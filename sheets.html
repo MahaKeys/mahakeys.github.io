@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mahakeys</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-black text-white">
+
+  <!-- Navbar -->
+  <header class="border-b border-gray-800">
+    <nav class="flex items-center justify-between px-8 py-4 max-w-7xl mx-auto">
+      <a href="index.html" class="text-xl font-bold tracking-wide">Mahakeys</a>
+
+      <ul class="flex gap-6 text-sm text-gray-300">
+        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+        <li><a href="sheets.html" class="hover:text-white transition">Sheets</a></li>
+        <li><a href="about.html" class="hover:text-white transition">About</a></li>
+        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Header -->
+  <div class="max-w-5xl mx-auto px-6 py-10">
+    <section class="text-left px-6">
+      <h2 class="text-5xl font-bold leading-tight">
+        Sheets
+      </h2>
+
+      <p class="text-gray-400 text-lg max-w-2xl">
+        Collection of all my piano sheets
+      </p>
+      
+    </section>
+
+    <!-- List of sheets -->
+    <section class="max-w-6xl mx-auto px-6 py-10">
+      <div id="sheet-list" class="grid gap-4"></div>
+    </section>
+
+    <script>
+      const sheets = [
+        { 
+          title: "Jhim Jhimaune Aankha", 
+          file: "Jhim_Jhimaune_Aankha_Sheet_Music.pdf",
+          youtube: "https://www.youtube.com/watch?v=H1--xlLgnw4"
+        },
+        { 
+          title: "Priya Phool", 
+          file: "Priya_Phool_Sheet_Music.pdf",
+          youtube: "https://www.youtube.com/watch?v=R0MNwy4_-3U"
+        }
+      ];
+
+      const container = document.getElementById("sheet-list");
+
+      sheets.forEach(sheet => {
+        const el = document.createElement("a");
+        el.href = `sheet.html?file=${sheet.file}&title=${encodeURIComponent(sheet.title)}`;
+        el.className = "block p-4 border border-gray-700 rounded-lg hover:bg-gray-900 transition";
+        el.href = `sheet.html?file=${sheet.file}&title=${encodeURIComponent(sheet.title)}&yt=${encodeURIComponent(sheet.youtube)}`;
+        el.innerHTML = `
+          <h3 class="text-xl font-semibold">${sheet.title}</h3>
+        `;
+
+        container.appendChild(el);
+      });
+    </script> 
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 text-center py-6 text-gray-500 text-sm">
+    <p>An Archive of resources from Mahakeys</p>
+  </footer>
+
+</body>
+</html>

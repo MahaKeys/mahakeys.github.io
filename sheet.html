@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sheet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black text-white">
+
+  <!-- Navbar -->
+  <header class="border-b border-gray-800">
+    <nav class="flex items-center justify-between px-8 py-4 max-w-7xl mx-auto">
+      <a href="index.html" class="text-xl font-bold tracking-wide">Mahakeys</a>
+
+      <ul class="flex gap-6 text-sm text-gray-300">
+        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+        <li><a href="sheets.html" class="hover:text-white transition">Sheets</a></li>
+        <li><a href="about.html" class="hover:text-white transition">About</a></li>
+        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Body -->
+   
+
+  <div class="max-w-5xl mx-auto px-6 py-10">
+    <div class="flex items-center justify-between mb-10">
+      <h1 id="title" class="text-4xl font-bold"></h1>
+
+      <button 
+        onclick="if (history.length > 1) { history.back(); } else { window.location.href='sheets.html'; }"
+        class="px-4 py-2 border border-gray-600 rounded-lg hover:bg-gray-900 transition">
+        ← Back
+      </button>
+    </div>
+    <div class="flex gap-4 mb-6">
+      <a id="downloadBtn"
+        class="px-4 py-2 bg-white text-black rounded-lg font-semibold hover:opacity-80 transition"
+        download>
+        Download PDF
+      </a>
+
+      <a id="ytBtn"
+        target="_blank"
+        class="px-4 py-2 border border-gray-600 rounded-lg hover:bg-gray-900 transition">
+        Watch on YouTube
+      </a>
+    </div>
+
+    <iframe 
+      id="viewer"
+      class="w-full h-[80vh] border border-gray-500 rounded-lg"
+    ></iframe>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get("file");
+    const title = params.get("title");
+    const yt = params.get("yt");
+
+    document.getElementById("title").textContent = title;
+
+    // PDF viewer
+    const pdfPath = `assets/sheets/${file}`;
+    document.getElementById("viewer").src = pdfPath;
+
+    // Download button
+    const downloadBtn = document.getElementById("downloadBtn");
+    downloadBtn.href = pdfPath;
+
+    // YouTube button
+    const ytBtn = document.getElementById("ytBtn");
+    ytBtn.href = yt;  
+  </script>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 text-center py-6 text-gray-500 text-sm">
+    <p>An Archive of resources from Mahakeys</p>
+  </footer>
+
+</body>
+</html>
